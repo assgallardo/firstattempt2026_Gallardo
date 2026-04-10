@@ -104,6 +104,33 @@ pnpm install
 **TypeScript errors in VS Code**
 > Open the Command Palette (`Ctrl + Shift + P`) → *"TypeScript: Select TypeScript Version"* → *"Use Workspace Version"*
 
+---
+
+## Screenshots
+
+### Login Page
+![Screenshot 1](./screenshots/Screenshot%202026-04-10%20113804.png)
+
+### Dashboard
+![Screenshot 2](./screenshots/Screenshot%202026-04-10%20113818.png)
+
+### Job Search
+![Screenshot 3](./screenshots/Screenshot%202026-04-10%20113829.png)
+
+### Job Details
+![Screenshot 4](./screenshots/Screenshot%202026-04-10%20113834.png)
+
+### Profile Page
+![Screenshot 5](./screenshots/Screenshot%202026-04-10%20113846.png)
+
+### Network Page
+![Screenshot 6](./screenshots/Screenshot%202026-04-10%20113854.png)
+
+### Messages Page
+![Screenshot 7](./screenshots/Screenshot%202026-04-10%20113905.png)
+
+---
+
 ### AI Tools:
 
 1. Chat GPT
