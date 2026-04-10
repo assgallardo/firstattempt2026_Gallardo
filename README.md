@@ -108,14 +108,14 @@ pnpm install
 ### Job Search
 ![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121214.png)
 
-### Job Details
+### Applications Page
 ![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121218.png)
 
-### Profile Page
+### Networks Page
 ![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121221.png)
 
-### Network Page
+### Messages Page
 ![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121224.png)
 
-### Messages Page
+### Settings Page
 ![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121229.png)
