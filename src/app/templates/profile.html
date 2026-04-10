@@ -1,52 +1,117 @@
-<div class="max-w-4xl mx-auto px-4 py-6 pb-24">
-  <div class="bg-white rounded-lg shadow p-6 mb-6">
-    <div class="flex justify-between items-start mb-4">
+<div class="min-h-screen bg-white">
+  <!-- Header -->
+  <div class="border-b border-gray-100 bg-white sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900">{{user.name}}</h1>
-        <p class="text-gray-600">{{user.title}}</p>
-        <p class="text-sm text-gray-500">📍 {{user.location}}</p>
+        <h1 class="text-[#0d2657] font-bold text-3xl">Profile</h1>
+        <p class="text-gray-400 text-sm mt-1">Your professional identity</p>
       </div>
-      <button 
-        ng-click="editProfile()" 
-        ng-if="!isEditing"
-        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-      >
-        Edit Profile
-      </button>
-      <button 
-        ng-click="saveProfile()" 
-        ng-if="isEditing"
-        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
-      >
-        Save
+      <button ng-click="editMode = !editMode" class="px-5 py-2.5 border border-[#1a5cdb] text-[#1a5cdb] rounded-xl font-semibold hover:bg-blue-50 transition-colors">
+        {{ editMode ? 'Done' : 'Edit Profile' }}
       </button>
     </div>
+  </div>
 
-    <p class="text-gray-700 mb-4">{{user.bio}}</p>
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-8 py-8 overflow-y-auto pb-24">
+    <!-- Profile Card -->
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 mb-8">
+      <div class="flex items-start gap-8">
+        <!-- Avatar -->
+        <div class="flex flex-col items-center gap-3 shrink-0">
+          <div class="w-32 h-32 rounded-3xl overflow-hidden shadow-lg border-4 border-[#1a5cdb]">
+            <img ng-src="{{user.avatar}}" alt="Avatar" class="w-full h-full object-cover" />
+          </div>
+          <button ng-if="editMode" class="text-[#1a5cdb] text-sm font-semibold hover:underline">Change Photo</button>
+        </div>
 
-    <div>
-      <h3 class="font-bold text-lg mb-2">Skills</h3>
+        <!-- Info -->
+        <div class="flex-1">
+          <h2 class="text-[#0d2657] font-bold text-3xl mb-1">{{user.name}}</h2>
+          <p class="text-gray-500 text-lg mb-4">{{user.title}}</p>
+          
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+              <p class="text-[#0d2657] font-bold text-2xl">{{user.connections}}</p>
+              <p class="text-gray-500 text-xs uppercase tracking-wider">Connections</p>
+            </div>
+            <div class="bg-green-50 rounded-2xl p-4 border border-green-100">
+              <p class="text-green-600 font-bold text-2xl">{{user.applications}}</p>
+              <p class="text-gray-500 text-xs uppercase tracking-wider">Applications</p>
+            </div>
+            <div class="bg-amber-50 rounded-2xl p-4 border border-amber-100">
+              <p class="text-amber-600 font-bold text-2xl">{{user.profile}}%</p>
+              <p class="text-gray-500 text-xs uppercase tracking-wider">Profile Complete</p>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-3 flex-wrap">
+            <button ng-click="generateCV()" class="px-5 py-2.5 bg-[#0d2657] hover:bg-[#1a3a6b] text-white rounded-xl font-semibold transition-colors flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              Generate CV
+            </button>
+            <button ng-click="shareProfile()" class="px-5 py-2.5 border border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-colors flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C9.589 12.938 10 12.581 10 12c0-.581-.411-.938-1.316-1.342m0 2.684a3 3 0 110-2.684m9.108-6.342h2.748a1 1 0 011 1v12a1 1 0 01-1 1h-2.748"></path></svg>
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-[#0d2657] font-bold text-2xl">Skills</h3>
+        <button ng-click="editSkills = !editSkills" class="text-[#1a5cdb] text-sm font-semibold hover:underline">{{ editSkills ? 'Done' : 'Edit' }}</button>
+      </div>
       <div class="flex flex-wrap gap-2">
-        <span ng-repeat="skill in user.skills" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">{{skill}}</span>
+        <span ng-repeat="skill in user.skills" class="px-4 py-2.5 bg-blue-50 border border-blue-200 text-[#0d2657] rounded-full text-sm font-medium">
+          {{skill}}
+          <button ng-if="editSkills" ng-click="removeSkill(skill)" class="ml-1.5 text-blue-300 hover:text-red-400">×</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 mb-8">
+      <h3 class="text-[#0d2657] font-bold text-2xl mb-6">Honors & Awards</h3>
+      <div class="space-y-4">
+        <div ng-repeat="honor in user.honors | limitTo:3" class="flex items-start gap-4 bg-gray-50 rounded-2xl p-4 border border-gray-100">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center shrink-0 text-[#1a5cdb]">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          </div>
+          <div class="flex-1">
+            <p class="text-[#0d2657] font-semibold">{{honor.title}}</p>
+            <p class="text-gray-500 text-sm mt-0.5">{{honor.description}}</p>
+          </div>
+          <span class="text-gray-400 text-xs shrink-0">{{honor.year}}</span>
+        </div>
+        <button ng-click="showHonors()" class="w-full py-3 text-[#1a5cdb] border border-[#1a5cdb] rounded-2xl font-semibold hover:bg-blue-50 transition-colors">
+          View All Honors
+        </button>
+      </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
+      <h3 class="text-[#0d2657] font-bold text-2xl mb-6">Certifications</h3>
+      <div class="space-y-2">
+        <div ng-repeat="cert in user.certs | limitTo:3" class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
+          <div>
+            <p class="text-[#0d2657] font-semibold text-sm">{{cert.name}}</p>
+            <p class="text-gray-500 text-xs">{{cert.org}}</p>
+          </div>
+          <span class="text-gray-400 text-xs">{{cert.year}}</span>
+        </div>
+        <button ng-click="showCerts()" class="w-full py-3 text-[#1a5cdb] border border-[#1a5cdb] rounded-2xl font-semibold hover:bg-blue-50 transition-colors">
+          View All {{user.certs.length}} Certifications
+        </button>
       </div>
     </div>
   </div>
-
-  <div class="bg-white rounded-lg shadow p-6 mb-6">
-    <h2 class="text-xl font-bold mb-4">Experience</h2>
-    <div ng-repeat="exp in user.experience" class="border-l-4 border-blue-600 pl-4 mb-4">
-      <h4 class="font-bold">{{exp.position}}</h4>
-      <p class="text-gray-600">{{exp.company}}</p>
-      <p class="text-sm text-gray-500">{{exp.years}}</p>
-    </div>
-  </div>
-
-  <button 
-    ng-click="generateCV()" 
-    class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
-  >
-    📄 Generate CV
-  </button>
 </div>
 
 <bottom-nav></bottom-nav>
