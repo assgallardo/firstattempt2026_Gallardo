@@ -7,17 +7,102 @@
 
 #### Installation
 
-To replicate and run this project follow the following steps using Windows Powershell:
+# Career Passport — Local Setup Guide
+
+A React + Tailwind CSS career networking app. Follow the steps below to run it locally in VS Code using **Windows PowerShell**.
+
+---
+
+## Setup (Windows PowerShell — copy & paste)
 
 ```bash
 winget install OpenJS.NodeJS.LTS
 nvm install lts
 nvm use lts
-<clone repo link here>
-<...>
-<...>
-npm run dev
+npm install -g pnpm
+git clone <your-repo-link-here>
+cd <your-repo-folder-name>
+pnpm install
+pnpm dev
 ```
+
+The app will open automatically at **http://localhost:5173**
+
+---
+
+## App Pages & Routes
+
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Login | Sign in with email, Google, or SSO |
+| `/profile` | Profile | User passport, CV generator, skills |
+| `/jobs` | Job Search | Browse, filter, and apply for jobs |
+| `/network` | Network | Connections and discover people |
+| `/messages` | Messages | Chat with connections |
+| `/applied` | Applications | Track your job applications |
+
+---
+
+## All Available Commands
+
+| Command | What it does |
+|---------|--------------|
+| `pnpm dev` | Start dev server with hot-reload at localhost:5173 |
+| `pnpm build` | Build optimised production bundle into `/dist` |
+| `pnpm preview` | Preview the production build locally |
+
+---
+
+## Project Structure
+
+```
+career-passport/
+├── index.html              ← Vite HTML entry point
+├── src/
+│   ├── main.tsx            ← React root render
+│   ├── app/
+│   │   ├── App.tsx         ← Root component + Router
+│   │   ├── routes.tsx      ← All page routes
+│   │   └── components/
+│   │       ├── LoginPage.tsx
+│   │       ├── ProfilePage.tsx
+│   │       ├── JobSearchPage.tsx
+│   │       ├── NetworkPage.tsx
+│   │       ├── MessagesPage.tsx
+│   │       ├── AppliedPage.tsx
+│   │       ├── BottomNav.tsx
+│   │       ├── Modal.tsx
+│   │       └── Toast.tsx
+│   └── styles/
+│       ├── index.css       ← Global CSS entry
+│       ├── tailwind.css    ← Tailwind v4 import
+│       ├── theme.css       ← Design tokens
+│       └── fonts.css       ← Font imports
+├── vite.config.ts
+├── tsconfig.json
+└── package.json
+```
+
+---
+
+## Troubleshooting
+
+**`nvm` not recognised after installing Node**
+> Close and reopen PowerShell, then try again.
+
+**Port 5173 already in use**
+```bash
+pnpm dev --port 3000
+```
+
+**Dependency install fails**
+```bash
+pnpm store prune
+pnpm install
+```
+
+**TypeScript errors in VS Code**
+> Open the Command Palette (`Ctrl + Shift + P`) → *"TypeScript: Select TypeScript Version"* → *"Use Workspace Version"*
 
 ### AI Tools:
 
