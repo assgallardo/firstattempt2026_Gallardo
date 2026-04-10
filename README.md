@@ -94,3 +94,28 @@ pnpm install
 
 **TypeScript errors in VS Code**
 > Open the Command Palette (`Ctrl + Shift + P`) → *"TypeScript: Select TypeScript Version"* → *"Use Workspace Version"*
+
+---
+
+## Screenshots
+
+### Login Page
+![Screenshot 1](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121202.png)
+
+### Dashboard
+![Screenshot 2](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121210.png)
+
+### Job Search
+![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121214.png)
+
+### Job Details
+![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121218.png)
+
+### Profile Page
+![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121221.png)
+
+### Network Page
+![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121224.png)
+
+### Messages Page
+![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121229.png)
