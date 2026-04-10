@@ -1,3 +1,11 @@
+## Gallardo
+
+#### Framework: Angular JS
+
+#### Module: Job Posting
+
+#### Installation
+
 # Career Passport — Local Setup Guide
 
 A React + Tailwind CSS career networking app. Follow the steps below to run it locally in VS Code using **Windows PowerShell**.
@@ -6,41 +14,43 @@ A React + Tailwind CSS career networking app. Follow the steps below to run it l
 
 ## Setup (Windows PowerShell — copy & paste)
 
-```bash
+```powershell
 winget install OpenJS.NodeJS.LTS
-nvm install lts
-nvm use lts
+```
+> Close and reopen PowerShell after this step, then continue:
+
+```powershell
 npm install -g pnpm
-git clone <your-repo-link-here>
-cd <your-repo-folder-name>
+git clone https://github.com/assgallardo/firstattempt2026_Gallardo
+cd firstattempt2026_Gallardo
 pnpm install
 pnpm dev
 ```
 
-The app will open automatically at **http://localhost:5173**
+Open your browser at **http://localhost:5173**
 
 ---
 
-## App Pages & Routes
-
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | Login | Sign in with email, Google, or SSO |
-| `/profile` | Profile | User passport, CV generator, skills |
-| `/jobs` | Job Search | Browse, filter, and apply for jobs |
-| `/network` | Network | Connections and discover people |
-| `/messages` | Messages | Chat with connections |
-| `/applied` | Applications | Track your job applications |
-
----
-
-## All Available Commands
+## Commands
 
 | Command | What it does |
 |---------|--------------|
 | `pnpm dev` | Start dev server with hot-reload at localhost:5173 |
-| `pnpm build` | Build optimised production bundle into `/dist` |
+| `pnpm build` | Build production bundle into `/dist` |
 | `pnpm preview` | Preview the production build locally |
+
+---
+
+## Pages & Routes
+
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Login | Split-screen sign-in with Google, SSO, or email |
+| `/profile` | Profile | Passport, CV generator, skills, honors |
+| `/jobs` | Job Search | Split-panel job list + detail view |
+| `/network` | Network | Connections grid, discover people |
+| `/messages` | Messages | Two-panel chat interface |
+| `/applied` | Applications | Table view of all job applications |
 
 ---
 
@@ -48,27 +58,28 @@ The app will open automatically at **http://localhost:5173**
 
 ```
 career-passport/
-├── index.html              ← Vite HTML entry point
+├── index.html
 ├── src/
-│   ├── main.tsx            ← React root render
+│   ├── main.tsx
 │   ├── app/
-│   │   ├── App.tsx         ← Root component + Router
-│   │   ├── routes.tsx      ← All page routes
+│   │   ├── App.tsx
+│   │   ├── routes.tsx
 │   │   └── components/
+│   │       ├── Sidebar.tsx          ← Desktop left navigation
+│   │       ├── Layout.tsx           ← Shared page wrapper
 │   │       ├── LoginPage.tsx
 │   │       ├── ProfilePage.tsx
 │   │       ├── JobSearchPage.tsx
 │   │       ├── NetworkPage.tsx
 │   │       ├── MessagesPage.tsx
 │   │       ├── AppliedPage.tsx
-│   │       ├── BottomNav.tsx
 │   │       ├── Modal.tsx
 │   │       └── Toast.tsx
 │   └── styles/
-│       ├── index.css       ← Global CSS entry
-│       ├── tailwind.css    ← Tailwind v4 import
-│       ├── theme.css       ← Design tokens
-│       └── fonts.css       ← Font imports
+│       ├── index.css
+│       ├── tailwind.css
+│       ├── theme.css
+│       └── fonts.css
 ├── vite.config.ts
 ├── tsconfig.json
 └── package.json
@@ -78,24 +89,76 @@ career-passport/
 
 ## Troubleshooting
 
-**`nvm` not recognised after installing Node**
-> Close and reopen PowerShell, then try again.
+**`pnpm` not recognised**
+```powershell
+npm install -g pnpm
+```
 
 **Port 5173 already in use**
-```bash
+```powershell
 pnpm dev --port 3000
 ```
 
+**`node` not recognised after install**
+> Close and reopen PowerShell, then try again.
+
 **Dependency install fails**
-```bash
+```powershell
 pnpm store prune
 pnpm install
 ```
 
 **TypeScript errors in VS Code**
-> Open the Command Palette (`Ctrl + Shift + P`) → *"TypeScript: Select TypeScript Version"* → *"Use Workspace Version"*
+> `Ctrl + Shift + P` → *TypeScript: Select TypeScript Version* → *Use Workspace Version*
 
----
+### AI Tools:
+
+1. Chat GPT
+1. Claude Sonnet 4.6
+1. VS Code - Github CoPilot
+
+### Prompt:
+
+Convert the provided Figma design into a responsive web application using AngularJS (1.x) for structure and logic, and Tailwind CSS for styling. Maintain a clean, modern, and minimalist UI that strictly follows the original layout, spacing, typography, and color palette of the design.
+
+🧩 Requirements:
+Use AngularJS (1.x) with a modular structure:
+Create components (or directives) for reusable UI elements (e.g., navbar, cards, buttons, modals).
+Use controllers to manage state and logic.
+Apply two-way data binding where needed.
+Use Tailwind CSS for all styling:
+Follow a blue-themed color palette
+Ensure proper spacing, padding, and alignment
+Use responsive utility classes for mobile-first design
+📱 Responsiveness:
+Ensure the layout works across:
+Mobile devices
+Tablets
+Desktop screens
+Maintain consistent spacing and visual hierarchy across all screen sizes
+🎨 UI/UX Guidelines:
+Keep the design clean and minimal
+Maintain rounded corners, soft shadows, and proper whitespace
+Use smooth transitions and hover states
+Follow accessibility best practices (contrast, readable font sizes, button clarity)
+⚙️ Functionality:
+Implement navigation between screens/pages using AngularJS routing
+Add interactive states:
+Button hover and click feedback
+Form inputs with validation
+Use mock/static data where backend is not defined
+📦 Output Structure:
+Organize code into:
+index.html
+app.js (AngularJS module and routing)
+controllers/
+components/
+Tailwind integrated via CDN or config
+🚀 Additional Notes:
+Optimize for performance and readability
+Ensure code is clean, well-indented, and maintainable
+Preserve all visual elements exactly as in the Figma design
+
 
 ## Screenshots
 
