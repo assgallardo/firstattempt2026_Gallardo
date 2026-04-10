@@ -109,25 +109,25 @@ pnpm install
 ## Screenshots
 
 ### Login Page
-![Screenshot 1](./screenshots/Screenshot%202026-04-10%20113804.png)
+![Screenshot 1](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113804.png)
 
 ### Dashboard
-![Screenshot 2](./screenshots/Screenshot%202026-04-10%20113818.png)
+![Screenshot 2](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113818.png)
 
 ### Job Search
-![Screenshot 3](./screenshots/Screenshot%202026-04-10%20113829.png)
+![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113829.png)
 
 ### Job Details
-![Screenshot 4](./screenshots/Screenshot%202026-04-10%20113834.png)
+![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113834.png)
 
 ### Profile Page
-![Screenshot 5](./screenshots/Screenshot%202026-04-10%20113846.png)
+![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113846.png)
 
 ### Network Page
-![Screenshot 6](./screenshots/Screenshot%202026-04-10%20113854.png)
+![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113854.png)
 
 ### Messages Page
-![Screenshot 7](./screenshots/Screenshot%202026-04-10%20113905.png)
+![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113905.png)
 
 ---
 
