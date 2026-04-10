@@ -1,0 +1,52 @@
+<div class="max-w-4xl mx-auto px-4 py-6 pb-24">
+  <div class="bg-white rounded-lg shadow p-6 mb-6">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">{{user.name}}</h1>
+        <p class="text-gray-600">{{user.title}}</p>
+        <p class="text-sm text-gray-500">📍 {{user.location}}</p>
+      </div>
+      <button 
+        ng-click="editProfile()" 
+        ng-if="!isEditing"
+        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+      >
+        Edit Profile
+      </button>
+      <button 
+        ng-click="saveProfile()" 
+        ng-if="isEditing"
+        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+      >
+        Save
+      </button>
+    </div>
+
+    <p class="text-gray-700 mb-4">{{user.bio}}</p>
+
+    <div>
+      <h3 class="font-bold text-lg mb-2">Skills</h3>
+      <div class="flex flex-wrap gap-2">
+        <span ng-repeat="skill in user.skills" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">{{skill}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-xl font-bold mb-4">Experience</h2>
+    <div ng-repeat="exp in user.experience" class="border-l-4 border-blue-600 pl-4 mb-4">
+      <h4 class="font-bold">{{exp.position}}</h4>
+      <p class="text-gray-600">{{exp.company}}</p>
+      <p class="text-sm text-gray-500">{{exp.years}}</p>
+    </div>
+  </div>
+
+  <button 
+    ng-click="generateCV()" 
+    class="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+  >
+    📄 Generate CV
+  </button>
+</div>
+
+<bottom-nav></bottom-nav>

@@ -1,0 +1,55 @@
+<div class="max-w-4xl mx-auto px-4 py-6 pb-24">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">My Applications</h1>
+
+  <div class="flex gap-2 mb-6">
+    <button 
+      ng-click="filterByStatus()" 
+      ng-class="{'bg-blue-600 text-white': !selectedStatus, 'bg-gray-200 text-gray-800': selectedStatus}"
+      class="px-4 py-2 rounded-lg transition-colors"
+    >
+      All
+    </button>
+    <button 
+      ng-click="filterByStatus('under_review')" 
+      ng-class="{'bg-blue-600 text-white': selectedStatus === 'under_review', 'bg-gray-200 text-gray-800': selectedStatus !== 'under_review'}"
+      class="px-4 py-2 rounded-lg transition-colors"
+    >
+      Under Review
+    </button>
+    <button 
+      ng-click="filterByStatus('accepted')" 
+      ng-class="{'bg-blue-600 text-white': selectedStatus === 'accepted', 'bg-gray-200 text-gray-800': selectedStatus !== 'accepted'}"
+      class="px-4 py-2 rounded-lg transition-colors"
+    >
+      Accepted
+    </button>
+    <button 
+      ng-click="filterByStatus('rejected')" 
+      ng-class="{'bg-blue-600 text-white': selectedStatus === 'rejected', 'bg-gray-200 text-gray-800': selectedStatus !== 'rejected'}"
+      class="px-4 py-2 rounded-lg transition-colors"
+    >
+      Rejected
+    </button>
+  </div>
+
+  <div class="space-y-4">
+    <div ng-repeat="application in getFilteredApplications()" class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900">{{application.jobTitle}}</h3>
+          <p class="text-gray-600">{{application.company}}</p>
+          <p class="text-sm text-gray-500">Applied on {{application.appliedDate | date:'short'}}</p>
+        </div>
+        <span ng-class="application.statusClass" class="px-4 py-2 rounded-full font-semibold">
+          {{application.statusLabel}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="getFilteredApplications().length === 0" class="text-center py-12">
+    <p class="text-gray-500">No applications found</p>
+  </div>
+</div>
+
+<bottom-nav></bottom-nav>

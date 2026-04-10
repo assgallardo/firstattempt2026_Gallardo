@@ -1,0 +1,51 @@
+<div class="max-w-4xl mx-auto px-4 py-6 pb-24">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">My Network</h1>
+
+  <div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h2 class="text-xl font-bold mb-4">Connections ({{connections.length}})</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div ng-repeat="connection in connections" class="border border-gray-200 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+            {{connection.avatar}}
+          </div>
+          <button 
+            ng-click="removeConnection(connection)" 
+            class="text-red-600 hover:text-red-800 text-sm"
+          >
+            Remove
+          </button>
+        </div>
+        <h4 class="font-bold text-gray-900">{{connection.name}}</h4>
+        <p class="text-sm text-gray-600">{{connection.title}}</p>
+        <p class="text-xs text-gray-500">{{connection.company}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Suggestions</h2>
+    <div class="space-y-4">
+      <div ng-repeat="suggestion in suggestions" class="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">
+            {{suggestion.avatar}}
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900">{{suggestion.name}}</h4>
+            <p class="text-sm text-gray-600">{{suggestion.title}}</p>
+            <p class="text-xs text-gray-500">{{suggestion.mutualConnections}} mutual connections</p>
+          </div>
+        </div>
+        <button 
+          ng-click="connectUser(suggestion)" 
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<bottom-nav></bottom-nav>

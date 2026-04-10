@@ -1,0 +1,56 @@
+<div class="max-w-4xl mx-auto px-4 py-6 pb-24 h-screen flex flex-col">
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Messages</h1>
+
+  <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
+    <div class="bg-white rounded-lg shadow overflow-y-auto">
+      <div ng-repeat="conversation in conversations" 
+        ng-click="selectConversation(conversation)"
+        ng-class="{'bg-blue-50 border-l-4 border-blue-600': selectedConversation && selectedConversation.id === conversation.id, 'border-b border-gray-200': true}"
+        class="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+      >
+        <div class="flex items-start justify-between mb-1">
+          <h4 class="font-bold text-gray-900">{{conversation.name}}</h4>
+          <span ng-if="conversation.unread > 0" class="bg-red-600 text-white text-xs rounded-full px-2 py-1">{{conversation.unread}}</span>
+        </div>
+        <p class="text-sm text-gray-600 truncate">{{conversation.lastMessage}}</p>
+        <p class="text-xs text-gray-500">{{conversation.timestamp}}</p>
+      </div>
+    </div>
+
+    <div ng-if="selectedConversation" class="col-span-1 md:col-span-2 bg-white rounded-lg shadow flex flex-col overflow-hidden">
+      <div class="bg-gray-50 p-4 border-b">
+        <h3 class="font-bold text-lg">{{selectedConversation.name}}</h3>
+        <p class="text-sm text-gray-600">Active now</p>
+      </div>
+
+      <div class="flex-1 p-4 overflow-y-auto flex flex-col justify-end">
+        <div class="text-center text-gray-500">
+          <p>Start your conversation</p>
+        </div>
+      </div>
+
+      <div class="border-t p-4">
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            ng-model="messageInput" 
+            placeholder="Type a message..."
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button 
+            ng-click="sendMessage()" 
+            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="!selectedConversation" class="col-span-1 md:col-span-2 bg-white rounded-lg shadow flex items-center justify-center">
+      <p class="text-gray-500">Select a conversation to start messaging</p>
+    </div>
+  </div>
+</div>
+
+<bottom-nav></bottom-nav>

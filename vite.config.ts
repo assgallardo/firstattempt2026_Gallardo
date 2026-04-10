@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite'
 import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
 import type { Plugin } from 'vite'
 
 /**
@@ -28,8 +26,6 @@ function figmaAssetPlugin(): Plugin {
 
 export default defineConfig({
   plugins: [
-    react(),
-    tailwindcss(),
     figmaAssetPlugin(),
   ],
   resolve: {
@@ -40,6 +36,6 @@ export default defineConfig({
   assetsInclude: ['**/*.svg', '**/*.csv'],
   server: {
     port: 5173,
-    open: true, // automatically opens the browser
+    open: true,
   },
 })
