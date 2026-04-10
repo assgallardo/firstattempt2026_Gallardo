@@ -8,7 +8,7 @@
 
 # Career Passport — Local Setup Guide
 
-A React + Tailwind CSS career networking app. Follow the steps below to run it locally in VS Code using **Windows PowerShell**.
+An AngularJS 1.x + Tailwind CSS career networking app. Follow the steps below to run it locally in VS Code using **Windows PowerShell**.
 
 ---
 
@@ -45,36 +45,23 @@ Open your browser at **http://localhost:5173**
 
 | Route | Page | Description |
 |-------|------|-------------|
-| `/` | Login | Split-screen sign-in with Google, SSO, or email |
+| `/login` | Login | Split-screen sign-in with Google, SSO, or email |
 | `/profile` | Profile | Passport, CV generator, skills, honors |
 | `/jobs` | Job Search | Split-panel job list + detail view |
-| `/network` | Network | Connections grid, discover people |
-| `/messages` | Messages | Two-panel chat interface |
-| `/applied` | Applications | Table view of all job applications |
 
 ---
 
 ## Project Structure
 
 ```
-career-passport/
+firstattempt2026_Gallardo/
 ├── index.html
+├── app.js
+├── views/
+│   ├── login.html
+│   ├── profile.html
+│   └── jobs.html
 ├── src/
-│   ├── main.tsx
-│   ├── app/
-│   │   ├── App.tsx
-│   │   ├── routes.tsx
-│   │   └── components/
-│   │       ├── Sidebar.tsx          ← Desktop left navigation
-│   │       ├── Layout.tsx           ← Shared page wrapper
-│   │       ├── LoginPage.tsx
-│   │       ├── ProfilePage.tsx
-│   │       ├── JobSearchPage.tsx
-│   │       ├── NetworkPage.tsx
-│   │       ├── MessagesPage.tsx
-│   │       ├── AppliedPage.tsx
-│   │       ├── Modal.tsx
-│   │       └── Toast.tsx
 │   └── styles/
 │       ├── index.css
 │       ├── tailwind.css
