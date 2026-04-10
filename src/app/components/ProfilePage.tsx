@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {
-  Settings, Award, CheckCircle2, Plus, FileText, X, Trash2,
-  Bell, Shield, Moon, ChevronRight, Download, Eye, Pencil, GraduationCap,
+  Settings, Award, CheckCircle2, Plus, FileText, X,
+  Bell, Shield, Moon, Eye, Pencil, GraduationCap, Download,
 } from "lucide-react";
-import { BottomNav } from "./BottomNav";
+import { Layout } from "./Layout";
 import { Modal } from "./Modal";
 import { showToast } from "./Toast";
 
@@ -47,7 +47,6 @@ function CVModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     setGenerating(true);
     setTimeout(() => { setGenerating(false); setGenerated(true); showToast("CV generated successfully!", "success"); }, 1800);
   };
-
   const handleDownload = () => {
     showToast("Downloading CV as PDF…", "info");
     setTimeout(() => showToast("CV downloaded!", "success"), 1500);
@@ -80,20 +79,16 @@ function CVModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               ))}
             </div>
           </div>
-          <button
-            onClick={handleGenerate}
-            disabled={generating}
-            className="w-full bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all disabled:opacity-70"
-          >
-            {generating ? (
-              <><svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg> Generating…</>
-            ) : (<><FileText size={15} /> Generate CV</>)}
+          <button onClick={handleGenerate} disabled={generating}
+            className="w-full bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all disabled:opacity-70">
+            {generating
+              ? <><svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg> Generating…</>
+              : <><FileText size={15} /> Generate CV</>}
           </button>
         </div>
       ) : (
         <div className="p-5 space-y-4">
-          {/* CV Preview */}
-          <div className="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-3">
+          <div className="border border-gray-200 rounded-xl p-5 bg-gray-50 space-y-3">
             <div className="border-b border-gray-200 pb-3">
               <p className="text-[#0d2657] font-bold text-base">Alex Johnson</p>
               <p className="text-gray-500 text-xs">Verified Alumnus · Class of 2020</p>
@@ -117,16 +112,12 @@ function CVModal({ open, onClose }: { open: boolean; onClose: () => void }) {
             </div>
           </div>
           <div className="flex gap-2">
-            <button
-              onClick={handleDownload}
-              className="flex-1 bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-2.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all"
-            >
+            <button onClick={handleDownload}
+              className="flex-1 bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-2.5 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all">
               <Download size={15} /> Download PDF
             </button>
-            <button
-              onClick={() => { setGenerated(false); }}
-              className="px-4 border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-            >
+            <button onClick={() => setGenerated(false)}
+              className="px-4 border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors">
               Edit
             </button>
           </div>
@@ -136,7 +127,7 @@ function CVModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-/* ─── All Honors Modal ─────────────────────────────────────── */
+/* ─── All Honors Modal ─────────────────────────────────────────── */
 function HonorsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <Modal open={open} onClose={onClose} title="All Academic Honors">
@@ -144,9 +135,7 @@ function HonorsModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         {ALL_HONORS.map((h) => (
           <div key={h.title} className="flex items-start gap-3 bg-gray-50 rounded-xl p-3 border border-gray-100">
             <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-              {h.icon === "award"
-                ? <Award size={20} className="text-[#1a5cdb]" />
-                : <CheckCircle2 size={20} className="text-[#1a5cdb]" />}
+              {h.icon === "award" ? <Award size={20} className="text-[#1a5cdb]" /> : <CheckCircle2 size={20} className="text-[#1a5cdb]" />}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-[#0d2657] font-semibold text-sm">{h.title}</p>
@@ -160,7 +149,7 @@ function HonorsModal({ open, onClose }: { open: boolean; onClose: () => void }) 
   );
 }
 
-/* ─── Certificates Modal ─────────────────────────────────────── */
+/* ─── Certificates Modal ─────────────────────────────────────────── */
 function CertsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <Modal open={open} onClose={onClose} title="12 Certificates">
@@ -179,116 +168,37 @@ function CertsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-/* ─── Settings Modal ─────────────────────────────────────────── */
-function SettingsModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [notifs, setNotifs] = useState(true);
-  const [jobAlerts, setJobAlerts] = useState(true);
-  const [profileVisible, setProfileVisible] = useState(true);
-  const [twoFA, setTwoFA] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
-  const Toggle = ({ value, onChange }: { value: boolean; onChange: () => void }) => (
-    <button
-      onClick={onChange}
-      className={`w-11 h-6 rounded-full transition-colors relative ${value ? "bg-[#0d2657]" : "bg-gray-200"}`}
-    >
-      <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${value ? "translate-x-5.5 left-0.5" : "translate-x-0.5 left-0"}`} />
-    </button>
-  );
-
-  const Section = ({ icon, title, desc, value, onChange }: { icon: React.ReactNode; title: string; desc: string; value: boolean; onChange: () => void }) => (
-    <div className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
-      <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">{icon}</div>
-        <div>
-          <p className="text-[#0d2657] font-semibold text-sm">{title}</p>
-          <p className="text-gray-400 text-xs mt-0.5">{desc}</p>
-        </div>
-      </div>
-      <Toggle value={value} onChange={onChange} />
-    </div>
-  );
-
-  const handleSave = () => { showToast("Settings saved!", "success"); onClose(); };
-
-  return (
-    <Modal open={open} onClose={onClose} title="Settings">
-      <div className="p-5 space-y-1">
-        <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-2">Notifications</p>
-        <Section icon={<Bell size={16} className="text-[#1a5cdb]" />} title="Push Notifications" desc="App alerts for messages and updates" value={notifs} onChange={() => setNotifs(v => !v)} />
-        <Section icon={<Award size={16} className="text-[#1a5cdb]" />} title="Job Alerts" desc="Get notified about matching jobs" value={jobAlerts} onChange={() => setJobAlerts(v => !v)} />
-
-        <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold pt-4 mb-2">Privacy & Security</p>
-        <Section icon={<Eye size={16} className="text-[#1a5cdb]" />} title="Public Profile" desc="Allow others to view your profile" value={profileVisible} onChange={() => setProfileVisible(v => !v)} />
-        <Section icon={<Shield size={16} className="text-[#1a5cdb]" />} title="Two-Factor Auth" desc="Extra security for your account" value={twoFA} onChange={() => setTwoFA(v => !v)} />
-
-        <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold pt-4 mb-2">Appearance</p>
-        <Section icon={<Moon size={16} className="text-[#1a5cdb]" />} title="Dark Mode" desc="Switch to dark theme" value={darkMode} onChange={() => setDarkMode(v => !v)} />
-
-        <div className="pt-4 space-y-2">
-          <button
-            onClick={handleSave}
-            className="w-full bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-3 rounded-xl font-semibold text-sm transition-all"
-          >
-            Save Settings
-          </button>
-          <button
-            onClick={() => { showToast("Logged out successfully.", "info"); }}
-            className="w-full border border-red-200 text-red-500 py-2.5 rounded-xl font-semibold text-sm hover:bg-red-50 transition-all"
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-    </Modal>
-  );
-}
-
-/* ─── Edit Skills Modal ─────────────────────────────────────── */
-function EditSkillsModal({
-  open, onClose, skills, onSave,
-}: { open: boolean; onClose: () => void; skills: string[]; onSave: (s: string[]) => void }) {
+/* ─── Edit Skills Modal ─────────────────────────────────────────── */
+function EditSkillsModal({ open, onClose, skills, onSave }: {
+  open: boolean; onClose: () => void; skills: string[]; onSave: (s: string[]) => void;
+}) {
   const [local, setLocal] = useState<string[]>(skills);
   const [input, setInput] = useState("");
 
   const add = () => {
-    if (input.trim() && !local.includes(input.trim())) {
-      setLocal([...local, input.trim()]);
-      setInput("");
-    }
+    if (input.trim() && !local.includes(input.trim())) { setLocal([...local, input.trim()]); setInput(""); }
   };
-
-  const remove = (s: string) => setLocal(local.filter((x) => x !== s));
-
-  const handleSave = () => { onSave(local); showToast("Skills updated!", "success"); onClose(); };
 
   return (
     <Modal open={open} onClose={onClose} title="Edit Skills">
       <div className="p-5 space-y-4">
         <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && add()}
+          <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && add()}
             placeholder="Add a new skill…"
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 outline-none focus:border-[#1a5cdb] transition-colors"
-          />
-          <button onClick={add} className="px-4 bg-[#0d2657] text-white rounded-lg text-sm font-semibold hover:bg-[#1a3a6b] transition-colors">
-            Add
-          </button>
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 outline-none focus:border-[#1a5cdb] transition-colors" />
+          <button onClick={add} className="px-4 bg-[#0d2657] text-white rounded-lg text-sm font-semibold hover:bg-[#1a3a6b] transition-colors">Add</button>
         </div>
         <div className="flex flex-wrap gap-2 min-h-[60px]">
           {local.map((skill) => (
             <span key={skill} className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border border-blue-200 rounded-full text-sm text-[#0d2657]">
               {skill}
-              <button onClick={() => remove(skill)} className="text-blue-300 hover:text-red-400 transition-colors">
-                <X size={12} />
-              </button>
+              <button onClick={() => setLocal(local.filter(x => x !== skill))} className="text-blue-300 hover:text-red-400 transition-colors"><X size={12} /></button>
             </span>
           ))}
           {local.length === 0 && <p className="text-gray-400 text-sm">No skills added yet.</p>}
         </div>
-        <button onClick={handleSave} className="w-full bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-3 rounded-xl font-semibold text-sm transition-all">
+        <button onClick={() => { onSave(local); showToast("Skills updated!", "success"); onClose(); }}
+          className="w-full bg-[#0d2657] hover:bg-[#1a3a6b] text-white py-3 rounded-xl font-semibold text-sm transition-all">
           Save Changes
         </button>
       </div>
@@ -311,19 +221,17 @@ function GPAModal({ open, onClose }: { open: boolean; onClose: () => void }) {
           <span className="text-[#0d2657] font-bold text-sm">Cumulative GPA</span>
           <span className="text-[#0d2657] font-bold text-xl">3.9 / 4.0</span>
         </div>
-        <div className="space-y-2">
-          {semesters.map((s) => (
-            <div key={s.name} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
-              <span className="text-sm text-gray-600">{s.name}</span>
-              <div className="flex items-center gap-3">
-                <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-[#0d2657] rounded-full" style={{ width: `${(s.gpa / 4) * 100}%` }} />
-                </div>
-                <span className="text-sm font-semibold text-[#0d2657] w-8 text-right">{s.gpa}</span>
+        {semesters.map((s) => (
+          <div key={s.name} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+            <span className="text-sm text-gray-600">{s.name}</span>
+            <div className="flex items-center gap-3">
+              <div className="w-32 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-full bg-[#0d2657] rounded-full" style={{ width: `${(s.gpa / 4) * 100}%` }} />
               </div>
+              <span className="text-sm font-semibold text-[#0d2657] w-8 text-right">{s.gpa}</span>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </Modal>
   );
@@ -332,149 +240,242 @@ function GPAModal({ open, onClose }: { open: boolean; onClose: () => void }) {
 /* ─── ProfilePage ────────────────────────────────────────────── */
 export function ProfilePage() {
   const [skills, setSkills] = useState(initialSkills);
-
   const [showCV, setShowCV] = useState(false);
   const [showAllHonors, setShowAllHonors] = useState(false);
   const [showCerts, setShowCerts] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   const [showEditSkills, setShowEditSkills] = useState(false);
   const [showGPA, setShowGPA] = useState(false);
-
-  const displayedHonors = ALL_HONORS.slice(0, 2);
 
   return (
     <>
       <CVModal open={showCV} onClose={() => setShowCV(false)} />
       <HonorsModal open={showAllHonors} onClose={() => setShowAllHonors(false)} />
       <CertsModal open={showCerts} onClose={() => setShowCerts(false)} />
-      <SettingsModal open={showSettings} onClose={() => setShowSettings(false)} />
       <EditSkillsModal open={showEditSkills} onClose={() => setShowEditSkills(false)} skills={skills} onSave={setSkills} />
       <GPAModal open={showGPA} onClose={() => setShowGPA(false)} />
 
-      <div className="w-full max-w-sm bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <span className="text-[#0d2657] font-bold text-lg tracking-wide">Career Passport</span>
-          <button
-            onClick={() => setShowSettings(true)}
-            className="text-gray-500 hover:text-[#1a5cdb] transition-colors p-1 rounded-lg hover:bg-gray-100"
-          >
-            <Settings size={20} />
-          </button>
-        </div>
+      <Layout>
+        <main className="flex-1 overflow-y-auto">
+          {/* ── Profile Hero Banner ── */}
+          <div className="relative" style={{ background: "linear-gradient(135deg, #0d1e3d 0%, #1a3a6b 100%)" }}>
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)",
+              backgroundSize: "40px 40px"
+            }} />
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto">
-          {/* Profile Card */}
-          <div className="flex flex-col items-center pt-6 pb-5 px-5">
-            {/* Avatar */}
-            <div className="relative">
-              <div className="w-24 h-24 rounded-full border-4 border-[#0d2657] overflow-hidden shadow-lg">
-                <img src={AVATAR} alt="Alex Johnson" className="w-full h-full object-cover object-top" />
-              </div>
-              <div className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#1a5cdb] border-2 border-white flex items-center justify-center">
-                <CheckCircle2 size={13} className="text-white" />
-              </div>
-            </div>
-
-            {/* Name & Title */}
-            <h2 className="mt-3 text-[#0d2657] font-bold text-xl">Alex Johnson</h2>
-            <p className="text-gray-500 text-sm mt-0.5">Verified Alumnus · Class of 2020</p>
-
-            {/* Generate CV Button */}
-            <button
-              onClick={() => setShowCV(true)}
-              className="mt-4 w-full bg-[#0d2657] hover:bg-[#1a3a6b] active:scale-[0.98] text-white py-3 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all"
-            >
-              <FileText size={16} />
-              Generate Professional CV
-            </button>
-          </div>
-
-          {/* Stats Row — each cell is clickable */}
-          <div className="border-t border-b border-dashed border-gray-200 grid grid-cols-3 divide-x divide-dashed divide-gray-200 py-3">
-            {/* GPA */}
-            <button onClick={() => setShowGPA(true)} className="flex flex-col items-center py-1 hover:bg-gray-50 transition-colors rounded-lg group">
-              <span className="text-[#0d2657] font-bold text-xl group-hover:text-[#1a5cdb] transition-colors">3.9</span>
-              <span className="text-gray-400 text-[10px] font-semibold tracking-wider mt-0.5">GPA</span>
-            </button>
-            {/* Certificates */}
-            <button onClick={() => setShowCerts(true)} className="flex flex-col items-center py-1 hover:bg-gray-50 transition-colors rounded-lg group">
-              <span className="text-[#0d2657] font-bold text-xl group-hover:text-[#1a5cdb] transition-colors">12</span>
-              <span className="text-gray-400 text-[10px] font-semibold tracking-wider mt-0.5">CERTIFICATES</span>
-            </button>
-            {/* Honors */}
-            <button onClick={() => setShowAllHonors(true)} className="flex flex-col items-center py-1 hover:bg-gray-50 transition-colors rounded-lg group">
-              <span className="text-[#0d2657] font-bold text-xl group-hover:text-[#1a5cdb] transition-colors">5</span>
-              <span className="text-gray-400 text-[10px] font-semibold tracking-wider mt-0.5">HONORS</span>
-            </button>
-          </div>
-
-          {/* Academic Honors */}
-          <div className="px-5 py-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[#0d2657] font-bold text-base">Academic Honors</span>
-              <button onClick={() => setShowAllHonors(true)} className="text-[#1a5cdb] text-sm hover:underline">
-                View All
-              </button>
-            </div>
-            <div className="space-y-3">
-              {displayedHonors.map((h) => (
-                <div key={h.title} className="flex items-start gap-3 bg-gray-50 rounded-xl p-3 border border-gray-100">
-                  <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                    {h.icon === "award"
-                      ? <Award size={20} className="text-[#1a5cdb]" />
-                      : <CheckCircle2 size={20} className="text-[#1a5cdb]" />}
+            <div className="relative z-10 px-8 pt-8 pb-6">
+              <div className="flex items-start gap-6">
+                {/* Avatar */}
+                <div className="relative shrink-0">
+                  <div className="w-24 h-24 rounded-2xl border-4 border-white/30 overflow-hidden shadow-xl">
+                    <img src={AVATAR} alt="Alex Johnson" className="w-full h-full object-cover object-top" />
                   </div>
-                  <div>
-                    <p className="text-[#0d2657] font-semibold text-sm">{h.title}</p>
-                    <p className="text-gray-400 text-xs mt-0.5">{h.desc}</p>
+                  <div className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-[#1a5cdb] border-2 border-white flex items-center justify-center">
+                    <CheckCircle2 size={14} className="text-white" />
                   </div>
                 </div>
-              ))}
+
+                {/* Name & Info */}
+                <div className="flex-1 min-w-0 pt-1">
+                  <h1 className="text-white text-3xl font-bold">Alex Johnson</h1>
+                  <p className="text-blue-200 text-sm mt-1">Verified Alumnus · Class of 2020 · B.S. Business Administration</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 rounded-full text-white text-xs font-medium">
+                      <GraduationCap size={12} /> State University
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/20 rounded-full text-green-300 text-xs font-medium">
+                      ● Open to Work
+                    </span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2 shrink-0 pt-1">
+                  <button onClick={() => setShowCV(true)}
+                    className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#0d2657] rounded-xl font-semibold text-sm hover:bg-blue-50 transition-all shadow-sm">
+                    <FileText size={16} /> Generate CV
+                  </button>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="flex items-center gap-8 mt-6 pt-5 border-t border-white/10">
+                <button onClick={() => setShowGPA(true)} className="text-left hover:opacity-80 transition-opacity group">
+                  <p className="text-white text-2xl font-bold group-hover:text-blue-200 transition-colors">3.9</p>
+                  <p className="text-blue-300 text-xs font-semibold tracking-wider">GPA / 4.0</p>
+                </button>
+                <div className="w-px h-8 bg-white/20" />
+                <button onClick={() => setShowCerts(true)} className="text-left hover:opacity-80 transition-opacity group">
+                  <p className="text-white text-2xl font-bold group-hover:text-blue-200 transition-colors">12</p>
+                  <p className="text-blue-300 text-xs font-semibold tracking-wider">CERTIFICATES</p>
+                </button>
+                <div className="w-px h-8 bg-white/20" />
+                <button onClick={() => setShowAllHonors(true)} className="text-left hover:opacity-80 transition-opacity group">
+                  <p className="text-white text-2xl font-bold group-hover:text-blue-200 transition-colors">5</p>
+                  <p className="text-blue-300 text-xs font-semibold tracking-wider">HONORS</p>
+                </button>
+                <div className="w-px h-8 bg-white/20" />
+                <div className="text-left">
+                  <p className="text-white text-2xl font-bold">47</p>
+                  <p className="text-blue-300 text-xs font-semibold tracking-wider">CONNECTIONS</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-dashed border-gray-200" />
+          {/* ── Content Grid ── */}
+          <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* Professional Skills */}
-          <div className="px-5 py-4">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[#0d2657] font-bold text-base">Professional Skills</span>
-              <button
-                onClick={() => setShowEditSkills(true)}
-                className="text-[#1a5cdb] text-sm hover:underline flex items-center gap-1"
-              >
-                <Pencil size={12} />
-                Edit
-              </button>
+            {/* ── Left / Main Column ── */}
+            <div className="lg:col-span-2 space-y-6">
+
+              {/* Academic Honors */}
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-[#0d2657] font-bold text-lg">Academic Honors</h2>
+                  <button onClick={() => setShowAllHonors(true)} className="text-[#1a5cdb] text-sm hover:underline font-medium">View All (5)</button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {ALL_HONORS.slice(0, 4).map((h) => (
+                    <div key={h.title} className="flex items-start gap-3 bg-gray-50 rounded-xl p-4 border border-gray-100 hover:border-blue-200 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                        {h.icon === "award" ? <Award size={20} className="text-[#1a5cdb]" /> : <CheckCircle2 size={20} className="text-[#1a5cdb]" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[#0d2657] font-semibold text-sm">{h.title}</p>
+                        <p className="text-gray-400 text-xs mt-0.5 leading-snug">{h.desc}</p>
+                        <p className="text-gray-300 text-xs mt-1">{h.year}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Professional Skills */}
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-[#0d2657] font-bold text-lg">Professional Skills</h2>
+                  <button onClick={() => setShowEditSkills(true)}
+                    className="text-[#1a5cdb] text-sm hover:underline font-medium flex items-center gap-1">
+                    <Pencil size={13} /> Edit Skills
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span key={skill}
+                      className="px-4 py-2 border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-[#1a5cdb] hover:text-[#1a5cdb] hover:bg-blue-50 transition-all cursor-default">
+                      {skill}
+                    </span>
+                  ))}
+                  <button onClick={() => setShowEditSkills(true)}
+                    className="px-4 py-2 border border-dashed border-[#1a5cdb] rounded-xl text-sm text-[#1a5cdb] flex items-center gap-1.5 hover:bg-blue-50 transition-colors">
+                    <Plus size={14} /> Add Skill
+                  </button>
+                </div>
+              </div>
+
+              {/* Work Experience placeholder */}
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-[#0d2657] font-bold text-lg">Work Experience</h2>
+                  <button className="text-[#1a5cdb] text-sm hover:underline font-medium flex items-center gap-1">
+                    <Plus size={13} /> Add
+                  </button>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { role: "Product Analyst", company: "TechFlow Systems", period: "Jan 2023 – Present", desc: "Led cross-functional product analysis initiatives, defining KPIs and driving 30% improvement in key metrics." },
+                    { role: "Business Analyst Intern", company: "Blue Knight Corp", period: "Jun 2022 – Dec 2022", desc: "Supported strategic planning and market research across the enterprise product suite." },
+                  ].map((job) => (
+                    <div key={job.role} className="flex gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#0d2657]/10 flex items-center justify-center shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d2657" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" /></svg>
+                      </div>
+                      <div>
+                        <p className="text-[#0d2657] font-semibold text-sm">{job.role}</p>
+                        <p className="text-gray-400 text-xs mt-0.5">{job.company} · {job.period}</p>
+                        <p className="text-gray-500 text-sm mt-1.5 leading-relaxed">{job.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1.5 border border-gray-300 rounded-full text-sm text-gray-700 hover:border-[#1a5cdb] hover:text-[#1a5cdb] transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-              <button
-                onClick={() => setShowEditSkills(true)}
-                className="px-3 py-1.5 border border-dashed border-[#1a5cdb] rounded-full text-sm text-[#1a5cdb] flex items-center gap-1 hover:bg-blue-50 transition-colors"
-              >
-                <Plus size={13} />
-                Add Skill
+
+            {/* ── Right Column ── */}
+            <div className="space-y-6">
+
+              {/* GPA Card */}
+              <button onClick={() => setShowGPA(true)}
+                className="w-full bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-left hover:border-blue-200 hover:shadow-md transition-all group">
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-3">Academic Performance</p>
+                <div className="flex items-end gap-2 mb-3">
+                  <span className="text-[#0d2657] text-4xl font-bold group-hover:text-[#1a5cdb] transition-colors">3.9</span>
+                  <span className="text-gray-400 text-sm mb-1">/ 4.0 GPA</span>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-2">
+                  <div className="h-2 bg-[#0d2657] rounded-full" style={{ width: "97.5%" }} />
+                </div>
+                <p className="text-[#1a5cdb] text-xs font-medium mt-2">View semester breakdown →</p>
               </button>
+
+              {/* Certifications */}
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-[#0d2657] font-bold text-base">Certifications</h2>
+                  <button onClick={() => setShowCerts(true)} className="text-[#1a5cdb] text-sm hover:underline font-medium">All 12</button>
+                </div>
+                <div className="space-y-2.5">
+                  {ALL_CERTS.slice(0, 5).map((c) => (
+                    <div key={c.name} className="flex items-center gap-3 py-2 border-b border-gray-50 last:border-0">
+                      <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={15} className="text-[#1a5cdb]" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[#0d2657] font-semibold text-xs truncate">{c.name}</p>
+                        <p className="text-gray-400 text-xs truncate">{c.org}</p>
+                      </div>
+                      <span className="text-xs text-gray-300 shrink-0">{c.year}</span>
+                    </div>
+                  ))}
+                </div>
+                <button onClick={() => setShowCerts(true)}
+                  className="mt-3 w-full py-2 border border-dashed border-gray-200 rounded-xl text-xs text-gray-400 hover:text-[#1a5cdb] hover:border-[#1a5cdb] transition-colors">
+                  + 7 more certificates
+                </button>
+              </div>
+
+              {/* Profile Completeness */}
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-3">Profile Strength</p>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[#0d2657] font-bold text-lg">82%</span>
+                  <span className="text-xs text-[#1a5cdb] font-medium">Strong</span>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-2 mb-4">
+                  <div className="h-2 bg-gradient-to-r from-[#0d2657] to-[#1a5cdb] rounded-full" style={{ width: "82%" }} />
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { label: "Add a profile photo", done: true },
+                    { label: "Complete work experience", done: true },
+                    { label: "Add 10+ skills", done: false },
+                    { label: "Get 3+ endorsements", done: false },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-2 text-xs">
+                      <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${item.done ? "bg-green-100" : "bg-gray-100"}`}>
+                        {item.done ? <CheckCircle2 size={11} className="text-green-600" /> : <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />}
+                      </div>
+                      <span className={item.done ? "text-gray-400 line-through" : "text-gray-600"}>{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="h-4" />
-        </div>
-
-        {/* Bottom Navigation */}
-        <BottomNav variant="profile" />
-      </div>
+        </main>
+      </Layout>
     </>
   );
 }
