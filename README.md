@@ -150,22 +150,10 @@ Preserve all visual elements exactly as in the Figma design
 ## Screenshots
 
 ### Login Page
-![Screenshot 1](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121202.png)
+![Login Page](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20133736.png)
 
-### Dashboard
-![Screenshot 2](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121210.png)
+### Profile Page
+![Profile Page](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20133742.png)
 
 ### Job Search
-![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121214.png)
-
-### Applications Page
-![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121218.png)
-
-### Networks Page
-![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121221.png)
-
-### Messages Page
-![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121224.png)
-
-### Settings Page
-![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20121229.png)
+![Job Search](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20133747.png)
