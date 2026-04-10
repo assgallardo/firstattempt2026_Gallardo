@@ -1,54 +1,80 @@
-<div class="max-w-4xl mx-auto px-4 py-6 pb-24">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">My Applications</h1>
-
-  <div class="flex gap-2 mb-6">
-    <button 
-      ng-click="filterByStatus()" 
-      ng-class="{'bg-blue-600 text-white': !selectedStatus, 'bg-gray-200 text-gray-800': selectedStatus}"
-      class="px-4 py-2 rounded-lg transition-colors"
-    >
-      All
-    </button>
-    <button 
-      ng-click="filterByStatus('under_review')" 
-      ng-class="{'bg-blue-600 text-white': selectedStatus === 'under_review', 'bg-gray-200 text-gray-800': selectedStatus !== 'under_review'}"
-      class="px-4 py-2 rounded-lg transition-colors"
-    >
-      Under Review
-    </button>
-    <button 
-      ng-click="filterByStatus('accepted')" 
-      ng-class="{'bg-blue-600 text-white': selectedStatus === 'accepted', 'bg-gray-200 text-gray-800': selectedStatus !== 'accepted'}"
-      class="px-4 py-2 rounded-lg transition-colors"
-    >
-      Accepted
-    </button>
-    <button 
-      ng-click="filterByStatus('rejected')" 
-      ng-class="{'bg-blue-600 text-white': selectedStatus === 'rejected', 'bg-gray-200 text-gray-800': selectedStatus !== 'rejected'}"
-      class="px-4 py-2 rounded-lg transition-colors"
-    >
-      Rejected
-    </button>
-  </div>
-
-  <div class="space-y-4">
-    <div ng-repeat="application in getFilteredApplications()" class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
-      <div class="flex justify-between items-start">
-        <div>
-          <h3 class="text-xl font-bold text-gray-900">{{application.jobTitle}}</h3>
-          <p class="text-gray-600">{{application.company}}</p>
-          <p class="text-sm text-gray-500">Applied on {{application.appliedDate | date:'short'}}</p>
-        </div>
-        <span ng-class="application.statusClass" class="px-4 py-2 rounded-full font-semibold">
-          {{application.statusLabel}}
-        </span>
-      </div>
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-6 py-6">
+      <h1 class="text-3xl font-bold text-gray-900">My Applications</h1>
     </div>
   </div>
 
-  <div ng-if="getFilteredApplications().length === 0" class="text-center py-12">
-    <p class="text-gray-500">No applications found</p>
+  <!-- Content -->
+  <div class="max-w-5xl mx-auto px-6 py-8 pb-32">
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button 
+        ng-click="filterByStatus()" 
+        ng-class="{'bg-[#0d2657] text-white': !selectedStatus, 'bg-gray-100 text-gray-800 hover:bg-gray-200': selectedStatus}"
+        class="px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+      >
+        All
+      </button>
+      <button 
+        ng-click="filterByStatus('under_review')" 
+        ng-class="{'bg-yellow-500 text-white': selectedStatus === 'under_review', 'bg-gray-100 text-gray-800 hover:bg-gray-200': selectedStatus !== 'under_review'}"
+        class="px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+      >
+        Under Review
+      </button>
+      <button 
+        ng-click="filterByStatus('accepted')" 
+        ng-class="{'bg-green-500 text-white': selectedStatus === 'accepted', 'bg-gray-100 text-gray-800 hover:bg-gray-200': selectedStatus !== 'accepted'}"
+        class="px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+      >
+        Accepted
+      </button>
+      <button 
+        ng-click="filterByStatus('rejected')" 
+        ng-class="{'bg-red-500 text-white': selectedStatus === 'rejected', 'bg-gray-100 text-gray-800 hover:bg-gray-200': selectedStatus !== 'rejected'}"
+        class="px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+      >
+        Rejected
+      </button>
+    </div>
+
+    <!-- Applications List -->
+    <div class="space-y-4">
+      <div ng-repeat="application in getFilteredApplications()" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all">
+        <div class="flex items-start justify-between">
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-gray-900">{{application.jobTitle}}</h3>
+            <p class="text-gray-600 mt-1">{{application.company}}</p>
+            <p class="text-sm text-gray-500 mt-2">Applied on {{application.appliedDate | date:'short'}}</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div ng-switch="application.status" class="px-4 py-2 rounded-full font-semibold text-sm transition-colors">
+              <span ng-switch-when="under_review" class="bg-yellow-50 text-yellow-800 border border-yellow-200">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                Under Review
+              </span>
+              <span ng-switch-when="accepted" class="bg-green-50 text-green-800 border border-green-200 flex items-center">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Accepted
+              </span>
+              <span ng-switch-when="rejected" class="bg-red-50 text-red-800 border border-red-200 flex items-center">
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l-.071-.071A7.002 7.002 0 003 12m0 0a9 9 0 1118 0m0 0a9 9 0 11-18 0m0 0A8.97 8.97 0 0120 20H4v-2a6 6 0 0112-2z"></path></svg>
+                Rejected
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div ng-if="getFilteredApplications().length === 0" class="text-center py-16">
+      <svg class="w-14 h-14 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M12 21h9m-9 0H3v-2a6 6 0 0112 0v2zm0-12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+      <p class="text-gray-500 font-semibold">No applications yet</p>
+      <p class="text-gray-400 text-sm mt-1">Start applying to jobs to see them here</p>
+    </div>
   </div>
 </div>
 

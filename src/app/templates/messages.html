@@ -1,54 +1,103 @@
-<div class="max-w-4xl mx-auto px-4 py-6 pb-24 h-screen flex flex-col">
-  <h1 class="text-3xl font-bold text-gray-900 mb-4">Messages</h1>
+<div class="min-h-screen bg-gray-50 flex flex-col">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-900">Messages</h1>
+      <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+      </button>
+    </div>
+  </div>
 
-  <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
-    <div class="bg-white rounded-lg shadow overflow-y-auto">
+  <!-- Messages Layout -->
+  <div class="flex-1 max-w-6xl w-full mx-auto px-6 py-6 pb-20 grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
+    <!-- Conversations List -->
+    <div class="md:col-span-1 bg-white rounded-xl shadow-sm border border-gray-100 overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-100 p-4">
+        <div class="relative">
+          <svg class="absolute left-3 top-3 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <input 
+            type="text" 
+            placeholder="Search conversations..."
+            class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-[#1a5cdb]"
+          />
+        </div>
+      </div>
+      
       <div ng-repeat="conversation in conversations" 
         ng-click="selectConversation(conversation)"
-        ng-class="{'bg-blue-50 border-l-4 border-blue-600': selectedConversation && selectedConversation.id === conversation.id, 'border-b border-gray-200': true}"
-        class="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+        ng-class="{'bg-blue-50 border-l-4 border-[#0d2657]': selectedConversation && selectedConversation.id === conversation.id}"
+        class="p-4 cursor-pointer hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0"
       >
-        <div class="flex items-start justify-between mb-1">
-          <h4 class="font-bold text-gray-900">{{conversation.name}}</h4>
-          <span ng-if="conversation.unread > 0" class="bg-red-600 text-white text-xs rounded-full px-2 py-1">{{conversation.unread}}</span>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#0d2657] to-[#1a5cdb] rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0">
+            {{conversation.avatar}}
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <h4 class="font-semibold text-gray-900 text-sm">{{conversation.name}}</h4>
+              <span ng-if="conversation.unread > 0" class="bg-[#0d2657] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {{conversation.unread}}
+              </span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 truncate">{{conversation.lastMessage}}</p>
+            <p class="text-xs text-gray-400 mt-1">{{conversation.timestamp}}</p>
+          </div>
         </div>
-        <p class="text-sm text-gray-600 truncate">{{conversation.lastMessage}}</p>
-        <p class="text-xs text-gray-500">{{conversation.timestamp}}</p>
       </div>
     </div>
 
-    <div ng-if="selectedConversation" class="col-span-1 md:col-span-2 bg-white rounded-lg shadow flex flex-col overflow-hidden">
-      <div class="bg-gray-50 p-4 border-b">
-        <h3 class="font-bold text-lg">{{selectedConversation.name}}</h3>
-        <p class="text-sm text-gray-600">Active now</p>
+    <!-- Chat Area -->
+    <div ng-if="selectedConversation" class="md:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
+      <!-- Chat Header -->
+      <div class="bg-white border-b border-gray-100 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#0d2657] to-[#1a5cdb] rounded-full flex items-center justify-center text-white font-bold">
+            {{selectedConversation.avatar}}
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">{{selectedConversation.name}}</h3>
+            <p class="text-xs text-gray-500">Active now</p>
+          </div>
+        </div>
+        <button class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+        </button>
       </div>
 
-      <div class="flex-1 p-4 overflow-y-auto flex flex-col justify-end">
+      <!-- Messages Area -->
+      <div class="flex-1 p-4 flex flex-col justify-end">
         <div class="text-center text-gray-500">
-          <p>Start your conversation</p>
+          <svg class="w-12 h-12 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+          <p class="text-sm">Start your conversation</p>
         </div>
       </div>
 
-      <div class="border-t p-4">
+      <!-- Message Input -->
+      <div class="border-t border-gray-100 p-4">
         <div class="flex gap-2">
           <input 
             type="text" 
             ng-model="messageInput" 
             placeholder="Type a message..."
-            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#1a5cdb]"
           />
           <button 
             ng-click="sendMessage()" 
-            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            class="px-4 py-2 bg-[#0d2657] hover:bg-[#1a3a6b] text-white rounded-lg font-semibold text-sm transition-colors"
           >
-            Send
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
           </button>
         </div>
       </div>
     </div>
 
-    <div ng-if="!selectedConversation" class="col-span-1 md:col-span-2 bg-white rounded-lg shadow flex items-center justify-center">
-      <p class="text-gray-500">Select a conversation to start messaging</p>
+    <!-- Empty State -->
+    <div ng-if="!selectedConversation" class="md:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center">
+      <div class="text-center">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <p class="text-gray-500">Select a conversation to start messaging</p>
+      </div>
     </div>
   </div>
 </div>
