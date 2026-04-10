@@ -106,31 +106,6 @@ pnpm install
 
 ---
 
-## Screenshots
-
-### Login Page
-![Screenshot 1](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113804.png)
-
-### Profile
-![Screenshot 2](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113818.png)
-
-### Network Page
-![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113829.png)
-
-### Job Search
-![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113834.png)
-
-### Messages
-![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113846.png)
-
-### Messages
-![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113854.png)
-
-### Applications Page
-![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113905.png)
-
----
-
 ### AI Tools:
 
 1. Chat GPT
@@ -181,4 +156,25 @@ Preserve all visual elements exactly as in the Figma design
 
 #### Screenshots
 
-"Create an image folder in your root directory and place all screenshots their. You can use the image tag to show the image. Follow this [link]("https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#images")"
+### Login Page
+![Screenshot 1](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113804.png)
+
+### Profile
+![Screenshot 2](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113818.png)
+
+### Network Page
+![Screenshot 3](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113829.png)
+
+### Job Search
+![Screenshot 4](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113834.png)
+
+### Messages
+![Screenshot 5](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113846.png)
+
+### Messages
+![Screenshot 6](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113854.png)
+
+### Applications Page
+![Screenshot 7](https://raw.githubusercontent.com/assgallardo/firstattempt2026_Gallardo/main/screenshots/Screenshot%202026-04-10%20113905.png)
+
+---
