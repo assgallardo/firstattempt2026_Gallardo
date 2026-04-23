@@ -186,6 +186,94 @@ Optimize for performance and readability
 Ensure code is clean, well-indented, and maintainable
 Preserve all visual elements exactly as in the Figma design
 
+### PWA Prompt
+You are a senior full-stack developer helping me transform my existing web project into a fully functional Progressive Web App (PWA).
+
+PROJECT CONTEXT:
+- I already have an existing project inside VS Code.
+- The project is stored in a public GitHub repository.
+- I will create and work inside a new branch:
+  git checkout -b feature/pwa-ready
+- Do NOT break the existing project structure.
+- Analyze the current codebase first before making changes.
+
+YOUR TASK:
+Convert my existing project into a production-ready PWA following professional standards.
+
+MAIN OBJECTIVES:
+
+1. CREATE A VALID manifest.json
+- Generate a complete manifest.json file.
+- Use university branding/theme colors.
+- Include:
+  - app name
+  - short name
+  - description
+  - start_url
+  - display: standalone
+  - background_color
+  - theme_color
+  - orientation
+  - icons (192x192 and 512x512 minimum)
+- Make sure manifest is linked correctly in HTML.
+
+2. REGISTER A SERVICE WORKER
+- Create service-worker.js
+- Register it properly in the main JS file.
+- Ensure it only runs in supported browsers.
+- Add clean console logs for install, activate, and fetch events.
+
+3. IMPLEMENT CACHING STRATEGIES
+Make the app load fast and work offline.
+
+Use:
+- Cache static assets (HTML, CSS, JS, images, fonts)
+- Offline fallback page if needed
+- Cache-first strategy for assets
+- Network-first for dynamic data if applicable
+- Automatically update old caches with versioning
+
+4. APP ICON MANAGEMENT
+- Detect where image assets are stored.
+- Use existing branding kit assets if available.
+- If icons are missing, tell me exactly what sizes to create.
+- Optimize favicon + PWA icons.
+
+5. CODEBASE SAFETY
+- Do not rewrite unrelated files.
+- Preserve current functionality.
+- Explain every file you modify before changing it.
+- Ask before deleting anything.
+
+6. README DOCUMENTATION
+Update README.md with:
+
+A. PWA Conversion Summary
+B. Installation Steps
+C. How to Run Locally
+D. Features Added
+E. The Master Prompt used for this conversion
+F. Hallucinations / AI mistakes / manual fixes encountered during development
+
+7. OUTPUT FORMAT
+Work step-by-step:
+
+Step 1: Analyze current project structure  
+Step 2: Identify files to modify  
+Step 3: Implement manifest  
+Step 4: Implement service worker  
+Step 5: Add caching strategies  
+Step 6: Validate installability  
+Step 7: Update README  
+
+8. IMPORTANT RULES
+- Use modern best practices.
+- Keep code clean and commented.
+- If framework is detected (React, Vue, Next.js, Vite, etc.), adapt implementation properly.
+- If plain HTML/CSS/JS, use vanilla implementation.
+- Warn me of any errors or hallucinations.
+
+Start by scanning my current project and telling me exactly what kind of app this is, what stack it uses, and the best PWA implementation plan.
 
 ## Screenshots
 
