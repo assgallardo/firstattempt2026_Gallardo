@@ -245,3 +245,19 @@
     },
   ]);
 })();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(function (registration) {
+        console.log(
+          "[ServiceWorker] Registered with scope:",
+          registration.scope
+        );
+      })
+      .catch(function (error) {
+        console.warn("[ServiceWorker] Registration failed:", error);
+      });
+  });
+}

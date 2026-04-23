@@ -98,6 +98,46 @@ pnpm install
 **TypeScript errors in VS Code**
 > `Ctrl + Shift + P` → *TypeScript: Select TypeScript Version* → *Use Workspace Version*
 
+---
+
+## PWA Conversion
+
+### A. PWA Conversion Summary
+- Added a web app manifest, service worker, and offline fallback page.
+- Implemented cache versioning with install, activate, and fetch logging.
+- Linked PWA metadata and icon references in the HTML entry point.
+
+### B. Installation Steps
+1. Add PWA icons to `/icons` (see required sizes below).
+2. Run `pnpm install`.
+3. Run `pnpm dev` or build/preview for production testing.
+
+### C. How to Run Locally
+```powershell
+pnpm dev
+```
+Open **http://localhost:5173**. The PWA starts on the login screen via `/#!/login`.
+
+### D. Features Added
+- `manifest.json` with university color palette branding.
+- `service-worker.js` with cache-first for static assets and network-first for navigation.
+- `offline.html` fallback page.
+
+### E. Master Prompt Used For This Conversion
+Convert the existing AngularJS 1.x project into a production-ready PWA with a valid manifest, service worker registration, offline support, cache versioning, and documentation updates.
+
+### F. Hallucinations / AI Mistakes / Manual Fixes Encountered
+- No hallucinations observed.
+- Icons generated from `assets/APP_HIREME_LOGO.png`.
+
+### PWA Asset Checklist
+Generated icon files under `/icons`:
+- `icon-192.png` (192x192)
+- `icon-512.png` (512x512)
+- `icon-512-maskable.png` (512x512, safe padding for maskable use)
+
+---
+
 ### AI Tools:
 
 1. Chat GPT
